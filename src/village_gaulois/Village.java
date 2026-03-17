@@ -44,9 +44,8 @@ public class Village {
 	public void afficherVillageois() {
 		System.out.println("Dans le village \"" + getNom() + "\" du chef " + getChef().getNom()
 				+ " vivent les légendaires gaulois :");
-		for (int i = 0; i < nbVillageois; i++) {
-			Gaulois gaulois = villageois[i];
-			System.out.println("- " + gaulois.getNom());
+		for (int i = 1; i <= nbVillageois; i++) {
+			System.out.println("- " + trouverVillageois(i).getNom());
 		}
 	}
 
