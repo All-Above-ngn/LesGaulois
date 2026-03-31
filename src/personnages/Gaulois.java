@@ -1,12 +1,15 @@
 package personnages;
 
+import objets.Equipement;
 import village_gaulois.Village;
 
 public class Gaulois {
 	private String nom;
-	private int force;
 	private int effetPotion = 1;
 	private Village village;
+	private int force;
+	private int nbTrophees;
+	private Equipement[] trophees = new Equipement[100];
 
 	public Gaulois(String nom, int force) {
 		this.nom = nom;
@@ -26,16 +29,18 @@ public class Gaulois {
 	}
 
 	private String prendreParole() {
-		return "Le Gaulois " + nom + " : ";
+		return "Le gaulois " + nom + " : ";
 	}
 
 	public void frapper(Romain romain) {
-		String nomRomain = romain.getNom();
-		System.out.println(nom + " envoie un grand coup dans la mâchoire de " + nomRomain);
-		int forceCoup = (force * effetPotion) / 3;
-		romain.recevoirCoup(forceCoup);
-		if (effetPotion > 1) {
-			effetPotion--;
+		System.out.println(nom + " envoie un grand coup dans la mâchoire de " + romain.getNom());
+		Equipement[] tropheesObtenus = romain.recevoirCoup((force / 2) * effetPotion);
+		effetPotion--;
+		if (effetPotion < 1) {
+			effetPotion = 1;
+		}
+		for (int i = 0; tropheesObtenus != null && i < tropheesObtenus.length; i++, nbTrophees++) {
+			this.trophees[nbTrophees] = tropheesObtenus[i];
 		}
 	}
 
@@ -44,18 +49,14 @@ public class Gaulois {
 	}
 
 	public void sePresenter() {
+		String introduction = "Bonjour, je m'appelle ";
 		if (village == null) {
-			parler("Bonjour, je m'appelle " + getNom() + ". Je voyage de villages en villages.");
+			parler(introduction + getNom() + ". Je voyage de villages en villages.");
 		} else if (village.getChef() == this) {
-			parler("Bonjour, je m'appelle " + getNom() + ". Je suis le chef du village : " + village.getNom() + ".");
+			parler(introduction + getNom() + ". Je suis le chef du village : " + village.getNom() + ".");
 		} else {
-			parler("Bonjour, je m'appelle " + getNom() + ". J'habite le village : " + village.getNom() + ".");
+			parler(introduction + getNom() + ". J'habite le village : " + village.getNom() + ".");
 		}
-	}
-
-	@Override
-	public String toString() {
-		return this.nom;
 	}
 
 	public static void main(String[] args) {
