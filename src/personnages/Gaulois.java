@@ -1,9 +1,6 @@
 package personnages;
 
-import java.util.Iterator;
-
 import objets.Equipement;
-import objets.Trophee;
 import village_gaulois.Musee;
 import village_gaulois.Village;
 
