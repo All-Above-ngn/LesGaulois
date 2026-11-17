@@ -4,7 +4,8 @@ import personnages.Gaulois;
 import personnages.Romain;
 import personnages.Druide;
 import objets.Equipement;
-import village_gaulois.Musee;
+
+//import village_gaulois.Musee;
 
 public class Scenario {
 
@@ -24,27 +25,19 @@ public class Scenario {
 		minus.sEquiper(Equipement.CASQUE);
 		milexcus.sEquiper(Equipement.CASQUE);
 		minus.parler("UN GAU... UN GAUGAU...");
-		int forceInitiale;
 		do {
-			forceInitiale = minus.getForce();
 			asterix.frapper(minus);
-		} while (minus.getForce() > 0 && minus.getForce() != forceInitiale);
-		if (minus.getForce() > 0) {
-			minus.parler("Alors " + asterix.getNom() + " on fait moins le malin face à mon équipement, Hi ! Hi !");
-			obelix.parler(asterix.getNom() + ", tu veux un peu d'aide ?");
-			do {
-				forceInitiale = minus.getForce();
-				obelix.frapper(minus);
-			} while (minus.getForce() > 0 && minus.getForce() != forceInitiale);
-		}
+		} while (minus.getForce() > 0);
+		
+//		PARTIE 5 : a decommenter
+//		milexcus.parler("UN GAU... UN GAUGAU...");
+//		do {
+//			obelix.frapper(milexcus);
+//		} while (milexcus.getForce() > 0);
 
-		milexcus.parler("UN GAU... UN GAUGAU...");
-		do {
-			obelix.frapper(milexcus);
-		} while (milexcus.getForce() > 0);
 
-		Musee musee = new Musee();
-		obelix.faireUneDonnation(musee);
+//		Musee musee = new Musee();
+//		obelix.faireUneDonnation(musee);
 
 	}
 
